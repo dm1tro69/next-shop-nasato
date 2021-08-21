@@ -8,7 +8,7 @@ Next.js website for Next-Shop. This site uses Strapi as a backend.
 
 # Setup Backend
 
-The Strapi backend can be found [here](https://github.com/dm1tro69/next-shop-nasato-back
+The Strapi backend can be found [here](https://github.com/dm1tro69/next-shop-nasato-back)
 Clone the repo above and run your backend
 
 Run the Server
