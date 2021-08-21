@@ -1,4 +1,4 @@
-# DJ Events (Frontend)
+# Next-Shop (Frontend)
 
 Next.js website for Next-Shop. This site uses Strapi as a backend.
 
