@@ -1,6 +1,7 @@
 import React from 'react';
 import Title from "../../components/Title";
 import Head from "next/head";
+import Image from "next/image";
 import {getProduct, getProducts} from "../../lib/products";
 import {ApiError} from "../../lib/api";
 
@@ -16,7 +17,16 @@ const ProductPage = ({product}) => {
         <main>
             <Title>Product Page</Title>
             <h1>{product.title}</h1>
-            <p>{product.description}</p>
+            <div className={'flex flex-col lg:flex-row'}>
+                <div className={''}>
+                    <Image src={product.pictureUrl} height={480} width={640}/>
+                </div>
+
+                <div className={'flex-1 lg:ml-4'}>
+                    <p>{product.description}</p>
+                    <p className={'text-lg font-bold mt-2'}>{product.price}</p>
+                </div>
+            </div>
         </main>
         </>
     );
