@@ -1,21 +1,14 @@
 import React from 'react';
-import Title from "../../components/Title";
-import Head from "next/head";
 import Image from "next/image";
 import {getProduct, getProducts} from "../../lib/products";
 import {ApiError} from "../../lib/api";
+import Page from "../../components/Page";
 
 const ProductPage = ({product}) => {
 
 
     return (
-        <>
-            <Head>
-                <title>Product Page</title>
-
-            </Head>
-        <main>
-            <Title>Product Page</Title>
+        <Page title={product.title}>
             <h1>{product.title}</h1>
             <div className={'flex flex-col lg:flex-row'}>
                 <div className={''}>
@@ -27,14 +20,14 @@ const ProductPage = ({product}) => {
                     <p className={'text-lg font-bold mt-2'}>{product.price}</p>
                 </div>
             </div>
-        </main>
-        </>
+
+        </Page>
     );
 };
 
 export default ProductPage;
 
-export async function getStaticPaths(){
+export async function getStaticPaths() {
     const products = await getProducts()
     return {
         paths: products.map(product => ({
@@ -46,19 +39,20 @@ export async function getStaticPaths(){
     }
 }
 
-export async function getStaticProps({params}){
+export async function getStaticProps({params}) {
 
-   try {
-       const product = await getProduct(params.id)
-       return {
-           props: {product},
-           revalidate: 5 * 60
-       }
-   }catch (e) {
+    try {
+        const product = await getProduct(params.id)
+        return {
+            props: {product},
+            revalidate: 5 * 60
+        }
+    }
+    catch (e) {
 
-       if (e instanceof ApiError && e.status === 404){
-           return {notFound: true}
-       }
-       throw e
-   }
+        if (e instanceof ApiError && e.status === 404) {
+            return {notFound: true}
+        }
+        throw e
+    }
 }
