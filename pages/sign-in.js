@@ -4,12 +4,15 @@ import Input from "../components/input";
 import Field from "../components/Field";
 import Button from "../components/Button";
 import {fetchJson} from "../lib/api";
+import {useRouter} from "next/router";
 
 const SinInPage = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [status, setStatus] = useState({loading: false, error: false})
+
+    const router = useRouter();
 
 
     const handleSubmit = async (e) => {
@@ -28,6 +31,7 @@ const SinInPage = () => {
               })
           })
           setStatus({loading: false, error: false})
+          router.push('/')
           console.log('sin-in', res)
       }catch (e) {
           setStatus({loading: false, error: true})
